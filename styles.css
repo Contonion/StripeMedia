@@ -123,7 +123,7 @@ header {
 
 .highlight {
     position: relative;
-    height: 80vh; /* Adjusted height */
+    height: 60vh; /* Adjusted height */
     width: 100%;
     overflow: hidden;
 }
