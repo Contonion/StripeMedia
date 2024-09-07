@@ -1,264 +1,306 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap'); /* Poppins font import */
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
-    background-color: #000; /* Solid black background */
-    position: fixed;
-    width: 100%;
-    height: 80px; /* Set a fixed height for the nav bar */
-    z-index: 1000;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-.logo {
+body {
+    font-family: 'Poppins', sans-serif; /* Poppins for body text */
+    background-color: #121212;
+    color: #f1f1f1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-shrink: 0; /* Prevent the logo from shrinking */
-}
-
-.logo img {
-    height: 80px; /* Ensures the logo fits within the nav bar height */
-    width: auto; /* Maintains aspect ratio */
-}
-
-.site-title {
-    font-size: 1.3rem;
-    font-weight: bold; /* Make "Stripe Media Utah" bold */
-    margin-left: 1rem;
-    color: #fff;
-}
-
-.hero {
-    position: relative;
-    height: 80vh;
-    width: 100%;
-    overflow: hidden;
-}
-
-.hero img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.hero-text {
-    position: absolute;
-    bottom: 20%;
-    left: 5%;
-    color: #fff;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-}
-
-.hero-text h1 {
-    font-size: 4rem;
-    margin: 0;
-}
-
-.hero-text p {
-    font-size: 1.5rem;
-}
-
-.advertisement {
-    padding: 4rem 2rem;
-    background-color: #fff;
-    color: #000;
-    display: flex;
     justify-content: center;
-    align-items: center;
+    min-height: 100vh;
 }
 
-.ad-content {
-    display: flex;
-    align-items: center;
-    max-width: 1200px;
-    width: 100%;
-}
-
-.ad-content img {
-    max-width: 50%;
-    height: auto;
-    margin-right: 2rem;
-}
-
-.ad-text {
-    max-width: 50%;
-}
-
-.ad-text h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.ad-text p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-.shop-now {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: #000;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-}
-
-.highlight {
+/* Featured Film Section (Sunny and Velum) */
+.featured-film {
     position: relative;
-    height: 60vh; /* Adjusted height */
-    width: 100%;
+    margin: 0; /* Remove any gap between sections */
+    padding: 0; /* Ensure no padding */
+    width: 100vw; /* Make the section take up full viewport width */
     overflow: hidden;
 }
 
-.highlight-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
+/* Maintain fixed height for the image, and ensure it stretches edge to edge */
+.featured-image {
+    width: 100vw; /* Full viewport width */
+    height: 550px; /* Fixed height (adjust as needed) */
     overflow: hidden;
 }
 
-.highlight-image {
+.featured-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    object-fit: cover; /* Ensure the image scales to cover the container without distortion */
 }
 
-.highlight-content:hover .highlight-image {
-    transform: scale(1.05); /* Zoom effect on hover */
-}
-
-.highlight-text {
+/* Overlay text for WATCH NOW and title */
+.film-overlay {
     position: absolute;
-    bottom: 20%;
-    left: 5%;
-    color: #fff;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    bottom: 20px;
+    left: 40px; /* Add padding from the left */
+    color: white;
 }
 
-.highlight-text h2 {
-    font-size: 4rem;
-    margin: 0;
+.watch-now {
+    font-size: 0.75rem;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
-.highlight-text p.highlight-subtext {
-    font-size: 1.5rem;
-    font-weight: 400; /* Normal weight for "Watch Now" text */
-}
-
-.people {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 4rem 2rem;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-}
-
-.people-section {
-    flex: 1;
-    max-width: 45%; /* Adjusted to reduce the maximum width for better alignment */
-    margin: 0; /* Remove extra margin */
-}
-
-.people-section h2 {
+.film-title {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-top: 5px;
 }
 
-.cast-gallery {
+
+header {
+    width: 100%;
+    height: calc(65vh + 100px); /* Background image height */
+    position: relative;
+    overflow: hidden;
+}
+
+.banner {
+    background-image: url('your-image-path.png'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Full-width black background for the section */
+.credits-section {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    width: 100vw; /* Full viewport width for background */
+    padding: 50px 0;
+    text-align: center; /* Center the section title */
+}
+
+/* Section Title */
+.section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center; /* Ensure the section title is centered */
+}
+
+/* Grid for Cast and Crew */
+.credits-grid {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    justify-content: center; /* Center the grid items */
+    gap: 15px; /* Reduced gap between items to bunch them closer together */
     flex-wrap: wrap;
-    margin-bottom: -2rem; /* Consistent bottom margin */
+    margin-bottom: 40px;
+    max-width: 1200px; /* Ensure the grid doesn't expand too much */
+    margin-left: auto;
+    margin-right: auto; /* Center the grid on the page */
 }
 
-.cast-item {
-    width: 150px;
+/* Each Cast Member */
+.cast-member {
+    flex: 0 1 160px; /* Ensure each item has a fixed width */
+    margin-bottom: 20px;
+}
+
+/* Cast Photos with 5x7 Aspect Ratio */
+.cast-photo {
+    width: 140px;
+    height: 196px; /* 5:7 aspect ratio */
+    object-fit: cover; /* Ensure the image fits without distortion */
+    border-radius: 10px; /* Slight rounding of image corners */
+    margin-bottom: 10px;
+}
+
+.cast-member p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center; /* Align the logo and text vertically */
+}
+.logo-img {
+    height: 150%; /* Make the logo height match the height of the text */
+    margin-right: 10px; /* Add some space between the logo and text */
+    max-height: 50px; /* Adjust this value based on how large the text height is */
+}
+
+.logo h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Regular 400 for Nocturn Films */
+    font-size: calc(0.6rem + 12px); /* Nocturn Films text size */
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    color: #fff;
 }
 
-.cast-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+.text-overlay h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Regular 400 to match Nocturn Films boldness */
+    font-size: calc(0.6rem + 34px); /* Larger text size */
+    letter-spacing: 0.5px; /* Decreased letter spacing */
 }
 
-.cast-item p {
-    margin-top: 0.5rem;
+.text-overlay p {
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200; /* Extra light 200 for the subtext */
     font-size: 1.2rem;
+    opacity: 0.85; /* 85% opacity for the subtext */
 }
 
-.our-cast {
-    padding: 4rem 2rem;
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: #ff4c4c;
+    color: #fff;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; /* Light 300 for button text */
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #d93939;
+    transform: translateY(-5px);
+}
+
+/* Hamburger Menu (Desktop Hidden) */
+.hamburger {
+    display: none; /* Hidden by default for desktop */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: none; /* Ensure it's hidden on desktop */
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bar {
+    width: 24px;  /* Each line has the same width */
+    height: 3px;  /* Thin line height */
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: width 0.3s ease;
+}
+
+.mobile-menu.open {
+    width: 100%; /* Menu opens fully */
+}
+
+.mobile-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Regular Social Buttons for Desktop */
+.social-links {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.social-button {
+    display: inline-block;
+    margin-left: 15px;
+    padding: 8.5px 15px;
     background-color: #000;
     color: #fff;
-    text-align: center;
-    margin-bottom: 0; /* Ensure no extra margin at the bottom */
-}
-
-.our-cast h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 footer {
-    background-color: #000;
-    color: #fff;
-    padding: 4rem 2rem;
-    text-align: left;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    padding: 4rem 1rem; /* Decrease the left and right padding */
+    text-align: left; /* Left-align the text */
+    width: 100vw; /* Ensure the footer spans the full width of the viewport */
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
 
 .footer-section {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    max-width: 1200px; /* Limit content width */
+    margin-left: 0; /* Remove auto-centering */
+    margin-right: auto; /* Still allow content to be centered horizontally */
+    padding-left: 1rem; /* Small gap from the left */
 }
 
-.footer-links {
+.footer-links,
+.footer-newsletter,
+.footer-legal {
     flex: 1;
     min-width: 200px;
     margin: 0 1rem;
-}
-
-.footer-links h3 {
-    margin-bottom: 1rem;
-}
-
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-links ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-links ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
 }
 
 .footer-newsletter {
@@ -267,8 +309,28 @@ footer {
     margin: 0 1rem;
 }
 
+.footer-links h3,
 .footer-newsletter h3 {
     margin-bottom: 1rem;
+}
+
+.footer-links ul,
+.footer-legal ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li,
+.footer-legal ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links ul li a,
+.footer-legal ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .footer-newsletter p {
@@ -294,28 +356,6 @@ footer {
     font-weight: bold;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
-}
-
-.footer-legal {
-    flex: 1;
-    min-width: 200px;
-    margin: 0 1rem;
-}
-
-.footer-legal ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-legal ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-legal ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
 }
 
 .modal {
@@ -357,68 +397,38 @@ footer {
     cursor: pointer;
 }
 
-/* Mobile Styles */
+
+.social-button:hover {
+    background-color: #333;
+    transform: translateY(-5px);
+}
+
+/* Responsive Design for Mobile */
 @media (max-width: 768px) {
-    .hero-text h1 {
-        font-size: 2.5rem;
+    /* Hide desktop social buttons */
+    .social-links {
+        display: none;
     }
 
-    .hero-text p {
-        font-size: 1rem;
+    /* Show hamburger menu on mobile */
+    .hamburger {
+        display: flex; /* Show hamburger when screen is small */
     }
 
-    .advertisement {
-        padding: 2rem 1rem;
+    .text-overlay h2 {
+        font-size: 2rem; /* Resize heading for smaller screens */
     }
 
-    .ad-content {
-        flex-direction: column;
+    .text-overlay p {
+        font-size: 1rem; /* Resize subtext */
     }
 
-    .ad-content img {
-        max-width: 100%;
-        margin: 0 0 1rem 0;
-}
-.ad-text {
-    max-width: 100%;
-}
+    .cta-button {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+    }
 
-.ad-text h2 {
-    font-size: 2rem;
-}
-
-.ad-text p {
-    font-size: 1rem;
-}
-
-.highlight-text h2 {
-    font-size: 2.5rem;
-}
-
-.highlight-text p.highlight-subtext {
-    font-size: 1rem;
-}
-
-.people {
-    flex-direction: column;
-    align-items: center; /* Center the sections on mobile */
-}
-
-.people-section {
-    max-width: 100%;
-    margin-bottom: 2rem;
-}
-
-.footer-section {
-    flex-direction: column;
-}
-
-.footer-links, .footer-newsletter, .footer-legal {
-    min-width: 100%;
-    margin: 1rem 0;
-}
-
-.modal-content {
-    width: 90%; /* Adjust for smaller screens */
-    margin: 10% auto; /* Center the modal */
+    .logo {
+        font-size: calc(0.6rem + 2px); /* Slightly smaller for mobile */
+    }
 }
