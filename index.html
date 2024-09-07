@@ -5,128 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nocturn Films</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet"> <!-- Poppins font -->
 </head>
 <body>
     <header>
+        <div class="banner">
         <div class="logo">
-            <img src="logo.webp" alt="Stripe Media Logo">
-            <span class="site-title">Nocturn Films</span>
+            <!-- Add your logo image next to the Nocturn Films text -->
+            <img src="logo.webp" alt="Nocturn Films Logo" class="logo-img" />
+            <h1>Nocturn Films</h1>
+        </div>
+        <div class="text-overlay">
+            <h2>The Art of Horror Short Films</h2>
+            <p>You need to spend more time in the light...</p>
+            <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" class="cta-button">Watch Now</a>
+        </div>
+
+            <!-- Regular Desktop Links -->
+            <div class="social-links">
+                <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" class="social-button">YouTube</a>
+                <a href="https://www.instagram.com/nocturn.films/" class="social-button">Instagram</a>
+                <a href="https://www.tiktok.com/@nocturn.films?_t=8nh02D3yzOt&_r=1" class="social-button">TikTok</a>
+            </div>
+
+            <!-- Hamburger Menu (for mobile) -->
+            <div class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <!-- Hidden Menu for Mobile -->
+            <nav class="mobile-menu" id="mobile-menu">
+                <span class="close-btn" id="close-btn">X</span>
+                <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" class="mobile-link">YouTube</a>
+                <a href="https://www.instagram.com/nocturn.films/" class="mobile-link">Instagram</a>
+                <a href="https://www.tiktok.com/@nocturn.films?_t=8nh02D3yzOt&_r=1" class="mobile-link">TikTok</a>
+            </nav>
         </div>
     </header>
-    <main>
-        <div class="hero">
-            <div class="hero-overlay"></div>
-            <img src="hero-image.webp" alt="Hero Image">
-            <div class="hero-text">
-                <h1>Welcome to Nocturn Films</h1>
-                <p>"You kids need to spend more time in the light..."</p>
+    <section class="featured-film">
+    <!-- Make the entire section clickable -->
+    <a href="https://youtu.be/n3-5JTH2s6g?si=RdtWCR6uLDUbBR-z" target="_blank" style="display: block; text-decoration: none;">
+        <div class="featured-image">
+            <img src="rewrite.webp" alt="Velum Film" />
+            <div class="film-overlay">
+                <span class="watch-now">WATCH NOW</span>
+                <h3 class="film-title">Rewrite</h3>
             </div>
         </div>
-        <section class="highlight">
-            <div class="highlight-content">
-		<a href="https://youtu.be/n3-5JTH2s6g" target="_blank" class="highlight-link">
-                <img src="ReWrite.webp" alt="Rewrite Image" class="highlight-image">
-                <div class="highlight-text">
-                    <h2>Rewrite</h2>
-                    <p class="highlight-subtext">Watch Now</p>
-                </div>
-		</a>
+    </a>
+</section>
+<section class="credits-section">
+    <h2 class="section-title">Cast</h2>
+    <div class="credits-grid">
+        <div class="cast-member">
+            <img src="bryce-jackman.webp" alt="Bryce Jackman" class="cast-photo" />
+            <p>Bryce Jackman</p>
+        </div>
+        <div class="cast-member">
+            <img src="ty-beck.webp" alt="Ty Beck" class="cast-photo" />
+            <p>Ty Beck</p>
+        </div>
+        <div class="cast-member">
+            <img src="luke-beck.webp" alt="Luke Beck" class="cast-photo" />
+            <p>Luke Beck</p>
+        </div>
+        <div class="cast-member">
+            <img src="amanda-jackman.webp" alt="Amanda Jackman" class="cast-photo" />
+            <p>Amanda Jackman</p>
+        </div>
+        <div class="cast-member">
+            <img src="carson-pollock.webp" alt="Carson Pollock" class="cast-photo" />
+            <p>Carson Pollock</p>
+        </div>
+        <div class="cast-member">
+            <img src="cade-jackman.webp" alt="Cade Jackman" class="cast-photo" />
+            <p>Cade Jackman</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Directors and Writers</h2>
+    <div class="credits-grid">
+        <div class="cast-member">
+            <img src="bryce-jackman.webp" alt="Bryce Jackman" class="cast-photo" />
+            <p>Bryce Jackman</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Cinematographers</h2>
+    <div class="credits-grid">
+        <div class="cast-member">
+            <img src="cade-jackman.webp" alt="Cade Jackman" class="cast-photo" />
+            <p>Cade Jackman</p>
+        </div>
+        <div class="cast-member">
+            <img src="luke-beck.webp" alt="Luke Beck" class="cast-photo" />
+            <p>Luke Beck</p>
+        </div>
+    </div>
+</section>
+
+<section class="featured-film">
+    <!-- Make the entire section clickable -->
+    <a href="https://youtu.be/n3-5JTH2s6g?si=RdtWCR6uLDUbBR-z" target="_blank" style="display: block; text-decoration: none;">
+        <div class="featured-image">
+            <img src="Zero.webp" alt="Zero Film" />
+            <div class="film-overlay">
+                <span class="watch-now">WATCH NOW</span>
+                <h3 class="film-title">Zero</h3>
             </div>
-        </section>
-	<section class="advertisement">
-            <div class="ad-content">
-                <img src="adimage.webp" alt="Advertisement Image">
-                <div class="ad-text">
-                    <h2>The Art of Horror</h2>
-                    <p>Discover our new masterpieces now available on YouTube. Experience the stunning visuals and captivating stories.</p>
-                    <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" target="_blank" class="shop-now">WATCH NOW</a>
-                </div>
+        </div>
+    </a>
+</section>
+<section class="featured-film">
+    <!-- Make the entire section clickable -->
+    <a href="https://youtu.be/n3-5JTH2s6g?si=RdtWCR6uLDUbBR-z" target="_blank" style="display: block; text-decoration: none;">
+        <div class="featured-image">
+            <img src="door-image.webp" alt="The Doorstep Film" />
+            <div class="film-overlay">
+                <span class="watch-now">WATCH NOW</span>
+                <h3 class="film-title">The Doorstep</h3>
             </div>
-        </section>
-        <section class="our-cast">
-            <h2>Cast</h2>
-            <div class="cast-gallery">
-                <div class="cast-item">
-                    <img src="bryce-jackman.webp" alt="Bryce Jackman">
-                    <p>Bryce Jackman</p>
-                </div>
-                <div class="cast-item">
-                    <img src="ty-beck.webp" alt="Ty Beck">
-                    <p>Ty Beck</p>
-                </div>
-		<div class="cast-item">
-                    <img src="luke-beck.webp" alt="Luke Beck">
-                    <p>Luke Beck</p>
-                </div>
-                <div class="cast-item">
-                    <img src="amanda-jackman.webp" alt="Amanda Jackman">
-                    <p>Amanda Jackman</p>
-                </div>
-                <div class="cast-item">
-                    <img src="carson-pollock.webp" alt="Carson Pollock">
-                    <p>Carson Pollock</p>
-                </div>
-		<div class="cast-item">
-                        <img src="cade-jackman.webp" alt="Cade Jackman">
-                        <p>Cade Jackman</p>
-                    </div>
-            </div>
-        </section>
-        <section class="people">
-            <div class="people-section">
-                <h2>Directors and Writers</h2>
-                <div class="cast-gallery">
-                    <div class="cast-item">
-                        <img src="bryce-jackman.webp" alt="Bryce Jackman">
-                        <p>Bryce Jackman</p>
-                    </div>
-                </div>
-            </div>
-            <div class="people-section">
-                <h2>Cinematographers</h2>
-                <div class="cast-gallery">
-                    <div class="cast-item">
-                        <img src="cade-jackman.webp" alt="Cade Jackman">
-                        <p>Cade Jackman</p>
-                    </div>
-                    <div class="cast-item">
-                        <img src="luke-beck.webp" alt="Luke Beck">
-                        <p>Luke Beck</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-	<section class="highlight">
-	    <div class="highlight-content">
-		<a href="https://youtu.be/DDxcVDQPeA4" target="_blank" class="highlight-link">
-                <img src="Zero.webp" alt="Zero Image" class="highlight-image">
-                <div class="highlight-text">
-                    <h2>Zero</h2>
-                    <p class="highlight-subtext">Watch Now</p>
-                </div>
-		</a>
-	    </div>
-        </section>
-	<section class="highlight">
-            <div class="highlight-content">
-		<a href="https://youtu.be/_eI-rSvhv-s" target="_blank" class="highlight-link">
-                <img src="door-image.webp" alt="The Door Image" class="highlight-image">
-                <div class="highlight-text">
-                    <h2>The Doorstep</h2>
-                    <p class="highlight-subtext">Watch Now</p>
-                </div>
-		</a>
-            </div>
-        </section>
-    </main>
-    <footer>
+        </div>
+    </a>
+</section>
+<footer>
         <div class="footer-section">
             <div class="footer-links">
                 <h3>NOCTURN FILMS</h3>
                 <ul>
                     <li><a href="https://www.tiktok.com/@nocturn.films?_t=8nh02D3yzOt&_r=1" target="_blank">TikTok</a></li>
-                    <li><a href="https://www.instagram.com/nocturnfilmstudio/" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.instagram.com/nocturn.films/" target="_blank">Instagram</a></li>
                     <li><a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" target="_blank">YouTube</a></li>
 		    <li><a href="#terms" id="terms-link">Terms of Use</a></li>
                     <li><a href="#privacy" id="privacy-link">Privacy Policy</a></li>
@@ -185,7 +195,7 @@ These Terms of Use and your use of the website will be governed by Github and co
         <div class="modal-content">
             <span class="close" id="close-privacy">&times;</span>
             <h2>Privacy Policy</h2>
-            <p>Nocturn Films is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website [your website URL] (the “Site”).
+            <p>Nocturn Films is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website nocturnfilms.com.
 
     1. Information We Collect
     • Personal Information: We may collect personally identifiable information, such as your name, email address, and phone number, when you voluntarily provide it to us.
@@ -252,5 +262,19 @@ These Terms of Use and your use of the website will be governed by Github and co
         }
     }
 </script>
+    <script>
+        // Toggle mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-btn');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+    </script>
 </body>
 </html>
