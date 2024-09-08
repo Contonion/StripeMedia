@@ -407,7 +407,7 @@ footer {
 @media (max-width: 768px) {
     /* Hide desktop social buttons */
     .film-overlay {
-        left: 29px; /* Bring the film titles closer to the left on mobile */
+        left: 20px; /* Bring the film titles closer to the left on mobile */
     }
 
     /* Footer Adjustments */
