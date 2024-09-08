@@ -70,7 +70,7 @@ header {
 }
 
 .banner {
-    background-image: url('background.png'); /* Replace with your image */
+    background-image: url('background.webp'); /* Replace with your image */
     background-size: cover;
     background-position: center;
     width: 100%;
