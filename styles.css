@@ -59,6 +59,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     margin-top: 5px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
 }
 
 
@@ -412,11 +413,11 @@ footer {
 
     /* Footer Adjustments */
     footer {
-        padding-left: 1rem; /* Reduce padding on mobile to bring text closer */
+        padding-left: .5rem; /* Reduce padding on mobile to bring text closer */
     }
 
     .footer-section {
-        padding-left: .2rem; /* Ensure footer content is closer to the left */
+        padding-left: .1rem; /* Ensure footer content is closer to the left */
     }
 
     .footer-links ul li, 
