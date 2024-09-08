@@ -406,6 +406,23 @@ footer {
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
     /* Hide desktop social buttons */
+    .film-overlay {
+        left: 29px; /* Bring the film titles closer to the left on mobile */
+    }
+
+    /* Footer Adjustments */
+    footer {
+        padding-left: 1rem; /* Reduce padding on mobile to bring text closer */
+    }
+
+    .footer-section {
+        padding-left: .2rem; /* Ensure footer content is closer to the left */
+    }
+
+    .footer-links ul li, 
+    .footer-legal ul li {
+        margin-left: 0; /* Remove extra indentation on mobile */
+    }
     .social-links {
         display: none;
     }
