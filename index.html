@@ -1,285 +1,1012 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nocturn Films</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet"> <!-- Poppins font -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --accent-red: #dc2626;
+            --accent-red-hover: #b91c1c;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border-color: #27272a;
+            --glass-bg: rgba(17, 17, 17, 0.8);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-xl: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('background.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(20px);
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 1001;
+        }
+
+        .logo-img {
+            height: 2.5rem;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-red);
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        /* Subscriber Counter Styling */
+        .subscriber-counter-container {
+            margin-top: 2rem;
+        }
+
+        .subscriber-link {
+            display: inline-block;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background: white;
+            padding: 8px;
+        }
+
+        .subscriber-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .subscriber-link iframe {
+            display: block;
+            pointer-events: none; /* Prevent iframe from capturing clicks */
+            border-radius: 8px;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-red);
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 0.25rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            width: 1.5rem;
+            height: 0.125rem;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--primary-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--accent-red);
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* Subscriber Counter Styling */
+        .subscriber-counter-container {
+            margin-top: 2rem;
+        }
+
+        .subscriber-link {
+            display: inline-block;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .subscriber-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .subscriber-link iframe {
+            display: block;
+            pointer-events: none; /* Prevent iframe from capturing clicks */
+        }
+
+        /* Featured Films */
+        .featured-section {
+            padding: 4rem 0;
+            background: var(--secondary-bg);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .films-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .film-card {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: var(--primary-bg);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .film-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .film-image {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .film-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .film-card:hover .film-image img {
+            transform: scale(1.05);
+        }
+
+        .film-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+        }
+
+        .watch-badge {
+            display: inline-block;
+            background: var(--accent-red);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            width: fit-content;
+        }
+
+        .film-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        /* Credits Section */
+        .credits-section {
+            padding: 4rem 0;
+            background: var(--primary-bg);
+        }
+
+        .credits-category {
+            margin-bottom: 3rem;
+        }
+
+        .credits-category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .credits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
+
+        .credit-card {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .credit-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .credit-photo {
+            width: 140px;
+            height: 196px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .credit-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-bg);
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-red);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: var(--secondary-bg);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .modal h2 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .films-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .credits-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .subscriber-link iframe {
+                width: 280px !important;
+                height: 70px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .films-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .film-image {
+                height: 250px;
+            }
+
+            .credits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .credit-photo {
+                width: 120px;
+                height: 168px;
+            }
+
+            .subscriber-link iframe {
+                width: 250px !important;
+                height: 60px !important;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="banner">
-        <div class="logo">
-            <!-- Add your logo image next to the Nocturn Films text -->
-            <img src="logo.webp" alt="Nocturn Films Logo" class="logo-img" />
-            <h1>Nocturn Films</h1>
-        </div>
-        <div class="text-overlay">
-            <h2>The Art of Horror Short Films</h2>
-            <p>You need to spend more time in the light...</p>
-            <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" class="cta-button">Watch Now</a>
-        </div>
-
-            <!-- Regular Desktop Links -->
-            <div class="social-links">
-                <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" class="social-button">YouTube</a>
-                <a href="https://www.instagram.com/nocturn.films/" class="social-button">Instagram</a>
-                <a href="https://www.tiktok.com/@nocturn.films?_t=8nh02D3yzOt&_r=1" class="social-button">TikTok</a>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.webp" alt="Nocturn Films" class="logo-img">
+                <div class="logo-text">Nocturn Films</div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" class="nav-link">YouTube</a>
+                <a href="https://www.instagram.com/nocturn.films/" class="nav-link">Instagram</a>
+                <a href="https://www.tiktok.com/@nocturn.films?_t=8nh02D3yzOt&_r=1" class="nav-link">TikTok</a>
             </div>
 
-            <!-- Hamburger Menu (for mobile) -->
-            <div class="hamburger" id="hamburger">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
+        </div>
+    </nav>
 
-            <!-- Hidden Menu for Mobile -->
-            <nav class="mobile-menu" id="mobile-menu">
-                <span class="close-btn" id="close-btn">X</span>
-                <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" class="mobile-link">YouTube</a>
-                <a href="https://www.instagram.com/nocturn.films/" class="mobile-link">Instagram</a>
-                <a href="https://www.tiktok.com/@nocturn.films?_t=8nh02D3yzOt&_r=1" class="mobile-link">TikTok</a>
-            </nav>
-        </div>
-    </header>
-    <section class="featured-film">
-    <!-- Make the entire section clickable -->
-    <a href="https://youtu.be/n3-5JTH2s6g?si=RdtWCR6uLDUbBR-z" target="_blank" style="display: block; text-decoration: none;">
-        <div class="featured-image">
-            <img src="ReWrite.webp" alt="Velum Film" />
-            <div class="film-overlay">
-                <span class="watch-now">WATCH NOW</span>
-                <h3 class="film-title">Rewrite</h3>
-            </div>
-        </div>
-    </a>
-</section>
-<section class="credits-section">
-    <h2 class="section-title">Cast</h2>
-    <div class="credits-grid">
-        <div class="cast-member">
-            <img src="bryce-jackman.webp" alt="Bryce Jackman" class="cast-photo" />
-            <p>Bryce Jackman</p>
-        </div>
-        <div class="cast-member">
-            <img src="ty-beck.webp" alt="Ty Beck" class="cast-photo" />
-            <p>Ty Beck</p>
-        </div>
-        <div class="cast-member">
-            <img src="luke-beck.webp" alt="Luke Beck" class="cast-photo" />
-            <p>Luke Beck</p>
-        </div>
-        <div class="cast-member">
-            <img src="amanda-jackman.webp" alt="Amanda Jackman" class="cast-photo" />
-            <p>Amanda Jackman</p>
-        </div>
-        <div class="cast-member">
-            <img src="carson-pollock.webp" alt="Carson Pollock" class="cast-photo" />
-            <p>Carson Pollock</p>
-        </div>
-        <div class="cast-member">
-            <img src="cade-jackman.webp" alt="Cade Jackman" class="cast-photo" />
-            <p>Cade Jackman</p>
-        </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" class="mobile-nav-link">YouTube</a>
+        <a href="https://www.instagram.com/nocturn.films/" class="mobile-nav-link">Instagram</a>
+        <a href="https://www.tiktok.com/@nocturn.films?_t=8nh02D3yzOt&_r=1" class="mobile-nav-link">TikTok</a>
     </div>
 
-    <h2 class="section-title">Directors and Writers</h2>
-    <div class="credits-grid">
-        <div class="cast-member">
-            <img src="bryce-jackman.webp" alt="Bryce Jackman" class="cast-photo" />
-            <p>Bryce Jackman</p>
-        </div>
-    </div>
-
-    <h2 class="section-title">Cinematographers and Editors</h2>
-    <div class="credits-grid">
-        <div class="cast-member">
-            <img src="cade-jackman.webp" alt="Cade Jackman" class="cast-photo" />
-            <p>Cade Jackman</p>
-        </div>
-	<div class="cast-member">
-            <img src="porter-steurer.webp" alt="Porter Steurer" class="cast-photo" />
-            <p>Porter Steurer</p>
-        </div>
-        <div class="cast-member">
-            <img src="luke-beck.webp" alt="Luke Beck" class="cast-photo" />
-            <p>Luke Beck</p>
-        </div>
-    </div>
-</section>
-
-<section class="featured-film">
-    <!-- Make the entire section clickable -->
-    <a href="https://youtu.be/n3-5JTH2s6g?si=RdtWCR6uLDUbBR-z" target="_blank" style="display: block; text-decoration: none;">
-        <div class="featured-image">
-            <img src="Zero.webp" alt="Zero Film" />
-            <div class="film-overlay">
-                <span class="watch-now">WATCH NOW</span>
-                <h3 class="film-title">Zero</h3>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">The Art of Horror Short Films</h1>
+            <p class="hero-subtitle">You need to spend more time in the light...</p>
+            <div class="subscriber-counter-container">
+                <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" target="_blank" class="subscriber-link">
+                    <iframe 
+                        height="80px" 
+                        width="300px" 
+                        frameborder="0" 
+                        src="https://livecounts.io/embed/youtube-live-subscriber-counter/UCZTzl4IEz3C-gIDure2XetQ" 
+                        style="border: 0; width: 300px; height: 80px; border-radius: 10px; overflow: hidden;">
+                    </iframe>
+                </a>
             </div>
         </div>
-    </a>
-</section>
-<section class="featured-film">
-    <!-- Make the entire section clickable -->
-    <a href="https://youtu.be/n3-5JTH2s6g?si=RdtWCR6uLDUbBR-z" target="_blank" style="display: block; text-decoration: none;">
-        <div class="featured-image">
-            <img src="door-image.webp" alt="The Doorstep Film" />
-            <div class="film-overlay">
-                <span class="watch-now">WATCH NOW</span>
-                <h3 class="film-title">The Doorstep</h3>
+    </section>
+
+    <!-- Featured Films -->
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Films</h2>
+            <div class="films-grid">
+                <a href="https://www.youtube.com/watch?v=vZAJj9GEfps" target="_blank" class="film-card fade-in" style="text-decoration: none;">
+                    <div class="film-image">
+                        <img src="Hospice.webp" alt="On Hospice" loading="lazy">
+                        <div class="film-overlay">
+                            <span class="watch-badge">Watch Now</span>
+                            <h3 class="film-title">On Hospice</h3>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=BSQDtkiaitQ" target="_blank" class="film-card fade-in" style="text-decoration: none;">
+                    <div class="film-image">
+                        <img src="Echo.webp" alt="Echo" loading="lazy">
+                        <div class="film-overlay">
+                            <span class="watch-badge">Watch Now</span>
+                            <h3 class="film-title">Echo</h3>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=i229gWn3Z5A" target="_blank" class="film-card fade-in" style="text-decoration: none;">
+                    <div class="film-image">
+                        <img src="CandleMan.webp" alt="The Candle Man" loading="lazy">
+                        <div class="film-overlay">
+                            <span class="watch-badge">Watch Now</span>
+                            <h3 class="film-title">The Candle Man</h3>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
-    </a>
-</section>
-<footer>
-        <div class="footer-section">
+    </section>
+
+    <!-- Credits Section -->
+    <section class="credits-section">
+        <div class="container">
+            <div class="credits-category fade-in">
+                <h2 class="credits-category-title">Cast</h2>
+                <div class="credits-grid">
+                    <div class="credit-card">
+                        <img src="bryce-jackman.webp" alt="Bryce Jackman" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Bryce Jackman</p>
+                    </div>
+                    <div class="credit-card">
+                        <img src="ty-beck.webp" alt="Ty Beck" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Ty Beck</p>
+                    </div>
+                    <div class="credit-card">
+                        <img src="luke-beck.webp" alt="Luke Beck" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Luke Beck</p>
+                    </div>
+                    <div class="credit-card">
+                        <img src="amanda-jackman.webp" alt="Amanda Jackman" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Amanda Jackman</p>
+                    </div>
+                    <div class="credit-card">
+                        <img src="carson-pollock.webp" alt="Carson Pollock" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Carson Pollock</p>
+                    </div>
+                    <div class="credit-card">
+                        <img src="cade-jackman.webp" alt="Cade Jackman" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Cade Jackman</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="credits-category fade-in">
+                <h2 class="credits-category-title">Directors and Writers</h2>
+                <div class="credits-grid">
+                    <div class="credit-card">
+                        <img src="bryce-jackman.webp" alt="Bryce Jackman" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Bryce Jackman</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="credits-category fade-in">
+                <h2 class="credits-category-title">Cinematographers and Editors</h2>
+                <div class="credits-grid">
+                    <div class="credit-card">
+                        <img src="cade-jackman.webp" alt="Cade Jackman" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Cade Jackman</p>
+                    </div>
+                    <div class="credit-card">
+                        <img src="porter-steurer.webp" alt="Porter Steurer" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Porter Steurer</p>
+                    </div>
+                    <div class="credit-card">
+                        <img src="luke-beck.webp" alt="Luke Beck" class="credit-photo" loading="lazy">
+                        <p class="credit-name">Luke Beck</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-title">Nocturn Films</h3>
             <div class="footer-links">
-                <h3>NOCTURN FILMS</h3>
-                <ul>
-                    <li><a href="https://www.tiktok.com/@nocturn.films?_t=8nh02D3yzOt&_r=1" target="_blank">TikTok</a></li>
-                    <li><a href="https://www.instagram.com/nocturn.films/" target="_blank">Instagram</a></li>
-                    <li><a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" target="_blank">YouTube</a></li>
-		    <li><a href="#terms" id="terms-link">Terms of Use</a></li>
-                    <li><a href="#privacy" id="privacy-link">Privacy Policy</a></li>
-                </ul>
+                <a href="https://www.youtube.com/channel/UCZTzl4IEz3C-gIDure2XetQ" class="footer-link" target="_blank">YouTube</a>
+                <a href="https://www.instagram.com/nocturn.films/" class="footer-link" target="_blank">Instagram</a>
+                <a href="https://www.tiktok.com/@nocturn.films?_t=8nh02D3yzOt&_r=1" class="footer-link" target="_blank">TikTok</a>
+                <a href="#" class="footer-link" id="termsLink">Terms of Use</a>
+                <a href="#" class="footer-link" id="privacyLink">Privacy Policy</a>
             </div>
         </div>
     </footer>
 
-    <!-- Modal for Terms of Use -->
-    <div id="terms-modal" class="modal">
+    <!-- Terms Modal -->
+    <div id="termsModal" class="modal">
         <div class="modal-content">
-            <span class="close" id="close-terms">&times;</span>
+            <button class="modal-close" id="closeTerms">&times;</button>
             <h2>Terms of Use</h2>
-            <p>
-Last Updated: June 22, 2024
-
-Welcome to NOCTURN FILMS. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions (“Terms of Use”). Please read these Terms of Use carefully before using our website.
-
-1. Acceptance of Terms
-
-By accessing or using the website, you agree to be bound by these Terms of Use and all terms incorporated by reference. If you do not agree to these Terms of Use, do not use the website.
-
-2. Changes to Terms
-
-NOCTURN FILMS reserves the right to change or modify these Terms of Use at any time and in our sole discretion. Any changes or modifications will be effective immediately upon posting the revisions to the website. Your continued use of the website will confirm your acceptance of the revised Terms of Use.
-
-3. Privacy Policy
-
-Please refer to our Privacy Policy for information about how we collect, use, and disclose information about our users.
-
-4. Use of the Website
-
-You may use the website only for lawful purposes and in accordance with these Terms of Use. You agree not to use the website:
-
-    • In any way that violates any applicable federal, state, local, or international law or regulation.
-    • To engage in any conduct that restricts or inhibits anyone’s use or enjoyment of the website.
-    • To impersonate or attempt to impersonate Nocturn Films.
-
-5. Intellectual Property Rights
-
-The website and its entire contents, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio) are owned by Nocturn Films, its licensors, or other providers of such material and are protected by United States and international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.
-
-6. Limitation of Liability
-
-To the fullest extent permitted by applicable law, Nocturn Films will not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, lost profits, data, use, goodwill, or other intangible losses, resulting from (i) your use or inability to use the website; (ii) any unauthorized access to or use of our servers and/or any personal information stored therein; (iii) any bugs, viruses, trojan horses, or the like that may be transmitted to or through our website by any third party.
-
-7. Governing Law
-
-These Terms of Use and your use of the website will be governed by Github and construed in accordance with the laws of the State of Utah, without regard to its conflict of law principles.
-</p>
+            <p><strong>Last Updated:</strong> June 22, 2024</p>
+            <p>Welcome to NOCTURN FILMS. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions ("Terms of Use"). Please read these Terms of Use carefully before using our website.</p>
+            
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing or using the website, you agree to be bound by these Terms of Use and all terms incorporated by reference. If you do not agree to these Terms of Use, do not use the website.</p>
+            
+            <h3>2. Changes to Terms</h3>
+            <p>NOCTURN FILMS reserves the right to change or modify these Terms of Use at any time and in our sole discretion. Any changes or modifications will be effective immediately upon posting the revisions to the website.</p>
+            
+            <h3>3. Use of the Website</h3>
+            <p>You may use the website only for lawful purposes and in accordance with these Terms of Use. You agree not to use the website in any way that violates any applicable federal, state, local, or international law or regulation.</p>
+            
+            <h3>4. Intellectual Property Rights</h3>
+            <p>The website and its entire contents, features, and functionality are owned by Nocturn Films, its licensors, or other providers of such material and are protected by United States and international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.</p>
         </div>
     </div>
 
-    <!-- Modal for Privacy Policy -->
-    <div id="privacy-modal" class="modal">
+    <!-- Privacy Modal -->
+    <div id="privacyModal" class="modal">
         <div class="modal-content">
-            <span class="close" id="close-privacy">&times;</span>
+            <button class="modal-close" id="closePrivacy">&times;</button>
             <h2>Privacy Policy</h2>
-            <p>Nocturn Films is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website nocturnfilms.com.
-
-    1. Information We Collect
-    • Personal Information: We may collect personally identifiable information, such as your name, email address, and phone number, when you voluntarily provide it to us.
-    • Non-Personal Information: We may collect non-personal information about you, such as your IP address, browser type, and operating system.
-2. Use of Information
-• We use the information we collect to operate, maintain, and improve the Site, and to respond to your inquiries.
-• We may use your email address to send you promotional and marketing materials, with your consent.
-3. Disclosure of Information
-• We do not sell, trade, or otherwise transfer your personal information to outside parties without your consent, except as described in this Privacy Policy.
-• We may disclose your information to third-party service providers who assist us in operating the Site and conducting our business.
-4. Cookies
-• We may use cookies and similar technologies to enhance your experience on the Site. You can choose to disable cookies through your browser settings, but this may affect your ability to use some features of the Site.
-5. Security
-• We implement reasonable security measures to protect your personal information from unauthorized access, use, or disclosure.
-6. Third-Party Links
-• The Site may contain links to third-party websites. We are not responsible for the privacy practices or the content of these third-party websites.
-7. Children’s Privacy
-• The Site is not intended for use by children under the age of 13. We do not knowingly collect personal information from children under 13.
-8. Changes to This Privacy Policy
-• We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on the Site
-</p>
+            <p>Nocturn Films is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website nocturnfilms.com.</p>
+            
+            <h3>1. Information We Collect</h3>
+            <p><strong>Personal Information:</strong> We may collect personally identifiable information, such as your name, email address, and phone number, when you voluntarily provide it to us.</p>
+            <p><strong>Non-Personal Information:</strong> We may collect non-personal information about you, such as your IP address, browser type, and operating system.</p>
+            
+            <h3>2. Use of Information</h3>
+            <p>We use the information we collect to operate, maintain, and improve the Site, and to respond to your inquiries. We may use your email address to send you promotional and marketing materials, with your consent.</p>
+            
+            <h3>3. Disclosure of Information</h3>
+            <p>We do not sell, trade, or otherwise transfer your personal information to outside parties without your consent, except as described in this Privacy Policy.</p>
+            
+            <h3>4. Security</h3>
+            <p>We implement reasonable security measures to protect your personal information from unauthorized access, use, or disclosure.</p>
         </div>
     </div>
-<script>
-    // Get the modal elements
-    var termsModal = document.getElementById("terms-modal");
-    var privacyModal = document.getElementById("privacy-modal");
 
-    // Get the link elements
-    var termsLink = document.getElementById("terms-link");
-    var privacyLink = document.getElementById("privacy-link");
-
-    // Get the close elements
-    var closeTerms = document.getElementById("close-terms");
-    var closePrivacy = document.getElementById("close-privacy");
-
-    // Open the terms modal when the link is clicked
-    termsLink.onclick = function() {
-        termsModal.style.display = "block";
-    }
-
-    // Open the privacy modal when the link is clicked
-    privacyLink.onclick = function() {
-        privacyModal.style.display = "block";
-    }
-
-    // Close the terms modal when the close button is clicked
-    closeTerms.onclick = function() {
-        termsModal.style.display = "none";
-    }
-
-    // Close the privacy modal when the close button is clicked
-    closePrivacy.onclick = function() {
-        privacyModal.style.display = "none";
-    }
-
-    // Close the modal when clicking outside of the modal content
-    window.onclick = function(event) {
-        if (event.target == termsModal) {
-            termsModal.style.display = "none";
-        }
-        if (event.target == privacyModal) {
-            privacyModal.style.display = "none";
-        }
-    }
-</script>
     <script>
-        // Toggle mobile menu
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeBtn = document.getElementById('close-btn');
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        hamburger.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
         });
 
-        closeBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('open');
+            }
         });
+
+        // Modal functionality
+        const termsModal = document.getElementById('termsModal');
+        const privacyModal = document.getElementById('privacyModal');
+        const termsLink = document.getElementById('termsLink');
+        const privacyLink = document.getElementById('privacyLink');
+        const closeTerms = document.getElementById('closeTerms');
+        const closePrivacy = document.getElementById('closePrivacy');
+
+        termsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            termsModal.style.display = 'block';
+        });
+
+        privacyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyModal.style.display = 'block';
+        });
+
+        closeTerms.addEventListener('click', () => {
+            termsModal.style.display = 'none';
+        });
+
+        closePrivacy.addEventListener('click', () => {
+            privacyModal.style.display = 'none';
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === termsModal) {
+                termsModal.style.display = 'none';
+            }
+            if (e.target === privacyModal) {
+                privacyModal.style.display = 'none';
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.nav');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // No need to fetch subscriber count anymore
+            console.log('Nocturn Films website loaded');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Performance optimization: Lazy load images
+        if ('loading' in HTMLImageElement.prototype) {
+            // Browser supports native lazy loading
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.src;
+            });
+        } else {
+            // Fallback for browsers that don't support native lazy loading
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+            document.body.appendChild(script);
+        }
+
+        // Add loading states and error handling for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+            
+            img.addEventListener('error', function() {
+                this.style.opacity = '0.5';
+                console.warn(`Failed to load image: ${this.src}`);
+            });
+        });
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Close mobile menu
+                mobileMenu.classList.remove('open');
+                // Close modals
+                termsModal.style.display = 'none';
+                privacyModal.style.display = 'none';
+            }
+        });
+
+        // Add focus management for accessibility
+        const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+        function trapFocus(element) {
+            const focusable = element.querySelectorAll(focusableElements);
+            const firstFocusable = focusable[0];
+            const lastFocusable = focusable[focusable.length - 1];
+
+            element.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusable) {
+                            lastFocusable.focus();
+                            e.preventDefault();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusable) {
+                            firstFocusable.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
+        }
+
+        // Apply focus trapping to modals
+        [termsModal, privacyModal].forEach(modal => {
+            if (modal) trapFocus(modal);
+        });
+
+        // Add touch gestures for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swiped left - close mobile menu if open
+                    mobileMenu.classList.remove('open');
+                }
+            }
+        }
     </script>
 </body>
 </html>
