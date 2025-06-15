@@ -149,28 +149,12 @@
             display: block;
             pointer-events: none; /* Prevent iframe from capturing clicks */
             border-radius: 8px;
-        }
-
-        /* Navigation Links */
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-red);
-            background: rgba(220, 38, 38, 0.1);
+            width: 300px !important;
+            height: 80px !important;
+            min-width: 300px !important;
+            min-height: 80px !important;
+            max-width: 300px !important;
+            max-height: 80px !important;
         }
 
         /* Mobile Menu */
@@ -245,30 +229,6 @@
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-weight: 300;
-        }
-
-        /* Subscriber Counter Styling */
-        .subscriber-counter-container {
-            margin-top: 2rem;
-        }
-
-        .subscriber-link {
-            display: inline-block;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .subscriber-link:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .subscriber-link iframe {
-            display: block;
-            pointer-events: none; /* Prevent iframe from capturing clicks */
         }
 
         /* Featured Films */
@@ -541,9 +501,23 @@
                 padding: 0 1rem;
             }
 
+            .subscriber-counter-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                padding: 0 1rem;
+            }
+
+            .subscriber-link {
+                padding: 2px;
+                border-radius: 6px;
+                width: fit-content;
+                max-width: 280px;
+            }
+
             .subscriber-link iframe {
-                width: 280px !important;
-                height: 70px !important;
+                width: 160px !important;
+                height: 40px !important;
             }
         }
 
@@ -565,9 +539,31 @@
                 height: 168px;
             }
 
+            .subscriber-counter-container {
+                padding: 0 0.5rem;
+            }
+
+            .subscriber-link {
+                padding: 2px;
+                border-radius: 4px;
+                max-width: 200px;
+            }
+
             .subscriber-link iframe {
-                width: 250px !important;
-                height: 60px !important;
+                width: 140px !important;
+                height: 35px !important;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .subscriber-link {
+                padding: 1px;
+                max-width: 180px;
+            }
+
+            .subscriber-link iframe {
+                width: 120px !important;
+                height: 30px !important;
             }
         }
 
