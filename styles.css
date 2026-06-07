@@ -95,7 +95,9 @@ h1, h2, h3 { color: var(--bone); }
     100% { transform: translate(1%, -1%); }
 }
 .vignette {
-    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 100vh; height: 100dvh; /* track the visual viewport so the bottom edge sits above the mobile toolbar */
+    z-index: 1; pointer-events: none;
     box-shadow: inset 0 0 240px rgba(0, 0, 0, 0.7);
 }
 
@@ -109,7 +111,7 @@ h1, h2, h3 { color: var(--bone); }
 
 /* ─── Layout helpers ─── */
 .container { max-width: var(--maxw); margin: 0 auto; }
-.section { position: relative; padding: 8.5rem var(--gutter); }
+.section { position: relative; padding: 8.5rem calc(var(--gutter) + env(safe-area-inset-right)) 8.5rem calc(var(--gutter) + env(safe-area-inset-left)); }
 .section-alt { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 
 .section-head {
@@ -146,12 +148,15 @@ h1, h2, h3 { color: var(--bone); }
    ============================================================ */
 .nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 0 var(--gutter); height: 86px;
+    height: calc(86px + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+    padding-left: calc(var(--gutter) + env(safe-area-inset-left));
+    padding-right: calc(var(--gutter) + env(safe-area-inset-right));
     background: transparent; border-bottom: 1px solid transparent;
     transition: transform var(--t), background var(--t), border-color var(--t), height var(--t);
 }
 .nav.scrolled {
-    height: 66px;
+    height: calc(66px + env(safe-area-inset-top));
     background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
@@ -229,6 +234,7 @@ h1, h2, h3 { color: var(--bone); }
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     gap: 1.75rem; z-index: 999; opacity: 0; pointer-events: none; visibility: hidden;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     transition: opacity var(--t), visibility var(--t);
 }
 .mobile-menu.open { opacity: 1; pointer-events: all; visibility: visible; }
@@ -246,7 +252,7 @@ h1, h2, h3 { color: var(--bone); }
 .hero {
     position: relative; min-height: 100vh; min-height: 100dvh;
     display: flex; align-items: center;
-    padding: 130px var(--gutter) 4rem;
+    padding: calc(130px + env(safe-area-inset-top)) calc(var(--gutter) + env(safe-area-inset-right)) calc(4rem + env(safe-area-inset-bottom)) calc(var(--gutter) + env(safe-area-inset-left));
     border-bottom: 1px solid var(--line);
 }
 .hero-inner {
@@ -288,7 +294,7 @@ h1, h2, h3 { color: var(--bone); }
 .hero-figure-cap::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--accent); margin-right: 0.5rem; vertical-align: middle; }
 
 .scroll-cue {
-    position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    position: absolute; bottom: calc(1.5rem + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
     z-index: 6; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
     color: var(--muted); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.25em;
 }
@@ -362,7 +368,8 @@ h1, h2, h3 { color: var(--bone); }
 .highlight-figure::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.96) 5%, rgba(10,10,10,0.3) 52%, rgba(10,10,10,0.72) 100%); }
 .highlight-inner {
     position: absolute; inset: 0; z-index: 4;
-    max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter);
+    max-width: var(--maxw); margin: 0 auto;
+    padding: 0 calc(var(--gutter) + env(safe-area-inset-right)) 0 calc(var(--gutter) + env(safe-area-inset-left));
     display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 5.5rem;
 }
 .highlight-kicker { color: var(--accent); margin-bottom: 1.4rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.24em; }
@@ -489,7 +496,7 @@ h1, h2, h3 { color: var(--bone); }
 /* ============================================================
    FOOTER
    ============================================================ */
-.footer { background: var(--bg); border-top: 1px solid var(--line); padding: 5rem var(--gutter) 2rem; }
+.footer { background: var(--bg); border-top: 1px solid var(--line); padding: 5rem calc(var(--gutter) + env(safe-area-inset-right)) calc(2rem + env(safe-area-inset-bottom)) calc(var(--gutter) + env(safe-area-inset-left)); }
 .footer-grid { max-width: var(--maxw); margin: 0 auto 3.5rem; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
 .footer-brand .nav-logo { margin-bottom: 1.25rem; }
 .footer-brand p { color: var(--muted); font-size: 0.92rem; line-height: 1.75; max-width: 34ch; }
@@ -539,7 +546,7 @@ h1, h2, h3 { color: var(--bone); }
 /* ============================================================
    COOKIE BANNER
    ============================================================ */
-.cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1500; background: rgba(10,10,10,0.93); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); padding: 1.25rem var(--gutter); display: none; }
+.cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1500; background: rgba(10,10,10,0.93); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); padding: 1.25rem calc(var(--gutter) + env(safe-area-inset-right)) calc(1.25rem + env(safe-area-inset-bottom)) calc(var(--gutter) + env(safe-area-inset-left)); display: none; }
 .cookie-banner.active { display: block; }
 .cookie-inner { max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
 .cookie-text { font-size: 0.82rem; color: var(--bone-dim); line-height: 1.6; flex: 1; min-width: 280px; }
@@ -585,8 +592,8 @@ h1, h2, h3 { color: var(--bone); }
     :root { --gutter: 1.5rem; }
     .nav-center, .store-btn-desktop { display: none; }
     .mobile-toggle { display: flex; }
-    .section { padding: 5.5rem var(--gutter); }
-    .section-head { margin-bottom: 3rem; }
+    .section { padding: 4.5rem calc(var(--gutter) + env(safe-area-inset-right)) 4.5rem calc(var(--gutter) + env(safe-area-inset-left)); }
+    .section-head { margin-bottom: 2.75rem; }
     .films-grid { grid-template-columns: 1fr; }
     .crew-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-row { gap: 2rem; }
@@ -596,7 +603,13 @@ h1, h2, h3 { color: var(--bone); }
     .highlight { display: grid; }
     .highlight-figure { grid-area: 1/1; }
     .highlight-figure img { position: absolute; inset: 0; }
-    .highlight-inner { grid-area: 1/1; position: static; padding: 3.5rem var(--gutter); }
+    .highlight-inner { grid-area: 1/1; position: static; padding: 3.25rem calc(var(--gutter) + env(safe-area-inset-right)) 3.25rem calc(var(--gutter) + env(safe-area-inset-left)); }
+    /* Hide the "Fig. 01" about image on mobile — it sits awkwardly in portrait (kept on desktop) */
+    .about-figure { display: none; }
+    .about-grid { gap: 0; }
+    /* The desktop vignette (240px inset) is huge on a phone-width screen and looks like a
+       heavy frame in the iOS full-screen browser — keep just a whisper of edge darkening */
+    .vignette { box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.35); }
 }
 @media (max-width: 480px) {
     .hero-actions, .shop-actions { flex-direction: column; align-items: stretch; }
