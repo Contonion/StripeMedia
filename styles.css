@@ -95,8 +95,10 @@ h1, h2, h3 { color: var(--bone); }
     100% { transform: translate(1%, -1%); }
 }
 .vignette {
-    position: fixed; top: 0; left: 0; right: 0;
-    height: 100vh; height: 100dvh; /* track the visual viewport so the bottom edge sits above the mobile toolbar */
+    position: fixed; inset: 0;
+    /* large-viewport height keeps the shadow spanning the full screen (incl. behind the
+       iOS floating toolbar) so the bottom edge darkening reaches all the way down */
+    min-height: 100vh; min-height: 100lvh;
     z-index: 1; pointer-events: none;
     box-shadow: inset 0 0 240px rgba(0, 0, 0, 0.7);
 }
